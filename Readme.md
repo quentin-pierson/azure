@@ -2,7 +2,7 @@
 
 [Trello](https://trello.com/b/nGKzY4KX/projet-azure)
 
-👥 Membres:
+👥 Membres:  
 [Raphaël Bonilauri](https://github.com/RBonilauri)  
 [Antoine Dubois](https://github.com/antdbs)  
 [Pierrick Perez](https://github.com/pperezdev)  
