@@ -15,11 +15,10 @@ def home():
 
     form = Research(request.form)
 
-    tags = ["Poire","Pêche","Steak"]
-
-    #form.tag.data = azure_config.AzureServices().get_tags()
-
-    return render_template('/form_tags.html',tags=tags, form=form)
+    form.tags.data = az.get_tags()
+    # form.type.data = ["logo", "humain", "produit"]
+    # tags=form.tags.data,
+    return render_template('/form_tags.html', form=form)
 
 @app.route('/picture', methods=['POST'])
 def picture():

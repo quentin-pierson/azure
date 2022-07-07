@@ -4,7 +4,7 @@ from flask_wtf import FlaskForm
 
 class Research(FlaskForm):
     tags = SelectMultipleField("Choose a tags", validate_choice=False)
-    type = RadioField('type', [validators.Length(min=4, max=25)])
+    type = RadioField('type', choices=["Logo", "Humain", "Produit"])
     description = TextAreaField('description', [validators.optional(), validators.length(max=200)])
     target = RadioField('target', choices=["Traiteur", "Fast Food", "Finger Food", "Brasserie"])
     submit = SubmitField('Submit')
