@@ -39,10 +39,10 @@ class SQLService:
         query = "EXEC SP_GET_PICTURES;"
         return self.execute_request_fetch(query)
 
-    def insert_tags(self, key, value):
-        query = f"EXEC SP_SET_TAG '{key}', '{value}';"
+    def insert_tags(self, key, value, id):
+        query = f"EXEC SP_SET_TAG '{key}', '{value}', {id};"
         return self.execute_request_fetch(query)
 
     def insert_pictures(self, name, description, link):
-        query = f"EXEC SP_SET_TAG '{name}', '{description}', '{link}';"
-        return self.execute_request_fetch(query)
+        query = f"EXEC SP_SET_PICTURE '{name}', '{description}', '{link}';"
+        return self.execute_request(query).fetchall()

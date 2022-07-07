@@ -10,19 +10,16 @@ app.config['SECRET_KEY'] = 'ErnR468dnezfheI3FUbeehui3'
 Bootstrap(app)
 
 az = azure_config.AzureServices()
-
-
 @app.route('/', methods=['GET'])
 def home():
 
     form = Research(request.form)
     form.tags.data = az.get_tags()
     if form.validate_on_submit():
-        img = az.get_picture(form.tags.data)
+        # img = az.get_picture(form.tags.data)
         img = "https://www.wapiti-magazine.com/wp-content/uploads/sites/26/2018/12/loutre-de-mer.jpg"
         return render_template('/form_tags.html', img=img, form=form)
-    else:
-        return render_template('/form_tags.html', form=form)
+    return render_template('/form_tags.html', form=form)
 
 
 @app.route('/picture', methods=['POST'])
