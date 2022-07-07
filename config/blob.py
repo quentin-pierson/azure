@@ -9,3 +9,18 @@ class ADLServices:
             credential = DefaultAzureCredential()
         if akv_service == None:
             akv_service = key_vault.AKVServices(credential=credential)
+
+        adl_service = config_file.ADL_SERVICE
+        key = akv_service.get_secret(config_file.AKV_ADL_SECRET_01)
+        conn_string = f"https://{adl_service}.blob.core.windows.net/"
+        self.blob_service_client = BlobServiceClient(conn_string, key)
+        #self.container_service = ContainerClient.from_connection_string(conn_str=conn_string,
+        #                                                                container_name="pictures",
+        #                                                                credential=credential)
+    def get_container(self):
+        blob_download = self.blob_service_client.download_blob()
+        print(f"Your content is: '{blob_content}'")
+
+
+    def get_all_pictures(self):
+        ...

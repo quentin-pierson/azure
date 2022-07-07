@@ -20,9 +20,10 @@ class SQLService:
         sql_database = akv_service.get_secret(config_file.AKV_SQL_DATABASE)
         sql_user = akv_service.get_secret(config_file.AKV_SQL_ADMIN_USER)
         sql_password = akv_service.get_secret(config_file.AKV_SQL_ADMIN_SECRET)
-        driver = "{ODBC Driver 13 for SQL Server}"
-        sa_url = f"mssql+pyodbc://{sql_user}:{sql_password}@{sql_server}:{sql_port}/{sql_database}?driver={driver}??trusted_connection=yes"
-        self.conn = create_engine(sa_url)
+        driver = "{ODBC Driver 18 for SQL Server}"
+
+        self.conn = pyodbc.connect(f'DRIVER={driver};SERVER=' + sql_server + ';DATABASE=' + sql_database + ';UID='
+                                   + sql_user + ';PWD=' + sql_password)
 
     def execute_request(self, query):
         result = self.conn.execute(query).fetchall()
