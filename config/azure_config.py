@@ -22,11 +22,14 @@ class AzureServices:
     def get_tags(self):
         return self.sql_service.get_tags()
 
+    def get_picture(self, tags):
+        return self.sql_service.get_picture(tags)
+
     def insert_tags(self, key, value):
         return self.sql_service.insert_tags(key, value)
 
     def insert_pictures(self, name, description, link):
         return self.sql_service.insert_tags(name, description, link)
 
-    def get_container(self):
-        self.adl_service.get_container()
+    def get_all_pictures(self):
+        return self.adl_service.get_all_pictures()

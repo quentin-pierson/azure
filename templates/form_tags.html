@@ -16,16 +16,33 @@ Find your best image
 
 {% block content %}
 
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <p class="navbar-brand" href="#">Navbar</p>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+    <div class="navbar-nav">
+      <a class="nav-item nav-link" href="/upload">Upload</a>
+      <a class="nav-item nav-link" href="/">Tags</a>
+    </div>
+  </div>
+</nav>
+
 <div class="container">
+    {{ img }}
+</div>
+
+<div  class="container">
   <div class="row">
     <div class="col-md-10 col-lg-8 mx-lg-auto mx-md-auto">
-        <p class="lead">This is the index page for proposing images from tags selection</p>
+        <p class="lead">This is the index page for proposing images from tags selection, press control for multiple choice</p>
 
-        <form class="form" method="POST" action="/login">
+        <form class="form">
             <div class="form-group">
-                <select name="tags" class="form-control" id="exampleFormControlSelect1">
+                <select name="tags" class="form-control" id="exampleFormControlSelect1" multiple>
                 {% for key, val in form.tags.data %}
-                    <option id="{{ key }}">{{ val }}</option>
+                    <option value="{{ key }}">{{ val }}</option>
                 {% endfor %}
                 </select>
             </div>
@@ -49,7 +66,7 @@ Find your best image
                 {% endfor %}
             </div>
             <div class="form-group">
-                {{ form.submit }}
+                {{ form.submit(class="btn btn-primary") }}
             </div>
 
         </form>

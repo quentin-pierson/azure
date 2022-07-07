@@ -4,15 +4,12 @@ from flask_wtf import FlaskForm
 
 class Research(FlaskForm):
     tags = SelectMultipleField("Choose a tags", validate_choice=False)
-    type = RadioField('type', choices=["Logo", "Humain", "Produit"])
-    description = TextAreaField('description', [validators.optional(), validators.length(max=200)])
-    target = RadioField('target', choices=["Traiteur", "Fast Food", "Finger Food", "Brasserie"])
+    # type = RadioField('type', choices=["Logo", "Humain", "Produit"])
+    # description = TextAreaField('description', [validators.optional(), validators.length(max=200)])
+    # target = RadioField('target', choices=["Traiteur", "Fast Food", "Finger Food", "Brasserie"])
     submit = SubmitField('Submit')
 
 
 class Upload(FlaskForm):
     image = FileField('Image File', validators=[FileRequired(), FileAllowed(['jpg', 'png'], 'Images only!')])
-
-
-class Index(FlaskForm):
-    submit_img = SubmitField('Submit')
+    submit = SubmitField('Submit')

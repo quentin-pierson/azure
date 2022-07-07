@@ -1,6 +1,6 @@
 import requests
 from flask import Flask, render_template, request
-from form import Research
+from form import Research, Upload
 from flask_bootstrap import Bootstrap
 import config.azure_config as azure_config
 
@@ -10,15 +10,19 @@ app.config['SECRET_KEY'] = 'ErnR468dnezfheI3FUbeehui3'
 Bootstrap(app)
 
 az = azure_config.AzureServices()
+
+
 @app.route('/', methods=['GET'])
 def home():
 
     form = Research(request.form)
-
     form.tags.data = az.get_tags()
-    # form.type.data = ["logo", "humain", "produit"]
-    # tags=form.tags.data,
-    return render_template('/form_tags.html', form=form)
+    if form.validate_on_submit():
+        img = az.get_picture(form.tags.data)
+        return render_template('/form_tags.html', img=img, form=form)
+    else:
+        return render_template('/form_tags.html', form=form)
+
 
 @app.route('/picture', methods=['POST'])
 def picture():
@@ -32,8 +36,7 @@ def picture():
 @app.route('/upload', methods=['GET', 'POST'])
 def upload():
     form = Upload(request.form)
-
-    render_template('/form_img.html', form=form)
+    return render_template('/form_img.html', form=form)
 
 
 if __name__ == '__main__':

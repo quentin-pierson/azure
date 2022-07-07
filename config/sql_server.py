@@ -35,10 +35,14 @@ class SQLService:
         query = "EXEC SP_GET_TAGS;"
         return self.execute_request_fetch(query)
 
+    def get_picture(self, tags):
+        query = "EXEC SP_GET_PICTURES;"
+        return self.execute_request_fetch(query)
+
     def insert_tags(self, key, value):
         query = f"EXEC SP_SET_TAG '{key}', '{value}';"
-        return self.execute_request(query)
+        return self.execute_request_fetch(query)
 
     def insert_pictures(self, name, description, link):
         query = f"EXEC SP_SET_TAG '{name}', '{description}', '{link}';"
-        return self.execute_request(query)
+        return self.execute_request_fetch(query)

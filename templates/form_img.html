@@ -10,9 +10,29 @@
 
 {% block title %}
 Select an image
+{% endblock %}
 
+{% block content %}
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <p class="navbar-brand" href="#">Navbar</p>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+    <div class="navbar-nav">
+      <a class="nav-item nav-link" href="/upload">Upload</a>
+      <a class="nav-item nav-link" href="/">Tags</a>
+    </div>
+  </div>
+</nav>
+
+<div class="container">
 	<form method="POST" action="" enctype="multipart/form-data">
 		<p><input type="file" name="file"></p>
-      	<p><input type="submit" value="Submit"></p>
+      	<div class="form-group">
+			{{ form.submit(class="btn btn-primary") }}
+		</div>
     </form>
+</div>
+
 {% endblock %}
