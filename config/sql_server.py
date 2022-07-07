@@ -8,6 +8,7 @@ import pyodbc
 import config.config_file as config_file
 import config.key_vault as key_vault
 
+
 class SQLService:
     def __init__(self, credential=None, akv_service=None):
         if credential == None:
@@ -33,8 +34,9 @@ class SQLService:
         query = "EXEC SP_GET_TAGS;"
         return self.execute_request(query)
 
-    def insert_tags(self):
-        pass
+    def insert_tags(self, key, value):
+        query = f"EXEC SP_SET_TAG '{key}', '{value}';"
+        return self.execute_request(query)
 
     def insert_pictures(self):
         pass
