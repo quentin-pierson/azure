@@ -13,5 +13,6 @@ class Research(FlaskForm):
 class Upload(FlaskForm):
     image = FileField('Image File', validators=[FileRequired(), FileAllowed(['jpg', 'png'], 'Images only!')])
 
+
 class Index(FlaskForm):
     submit_img = SubmitField('Submit')

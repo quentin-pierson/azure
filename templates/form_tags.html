@@ -21,7 +21,7 @@ Find your best image
     <div class="col-md-10 col-lg-8 mx-lg-auto mx-md-auto">
         <p class="lead">This is the index page for proposing images from tags selection</p>
 
-        <form class="form">
+        <form class="form" method="POST" action="/login">
             <div class="form-group">
                 <select name="tags" class="form-control" id="exampleFormControlSelect1">
                 {% for key, val in form.tags.data %}

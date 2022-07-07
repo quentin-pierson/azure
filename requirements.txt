@@ -143,3 +143,6 @@ win-inet-pton @ file:///C:/ci/win_inet_pton_1605306162074/work
 wincertstore==0.2
 WTForms==3.0.1
 zipp @ file:///home/conda/feedstock_root/build_artifacts/zipp_1614945704755/work
+pyodbc
+sqlalchemy
+jinja2

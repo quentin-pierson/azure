@@ -31,7 +31,9 @@ def picture():
 
 @app.route('/upload', methods=['GET', 'POST'])
 def upload():
-    pass
+    form = Upload(request.form)
+
+    render_template('/form_img.html', form=form)
 
 
 if __name__ == '__main__':
