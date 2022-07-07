@@ -1,8 +1,5 @@
+import sqlalchemy
 from azure.identity import DefaultAzureCredential
-import sqlalchemy as sa
-from sqlalchemy import create_engine
-import urllib
-from urllib.parse import quote_plus
 
 import pyodbc
 import config.config_file as config_file
@@ -27,16 +24,21 @@ class SQLService:
                                    + sql_user + ';PWD=' + sql_password)
 
     def execute_request(self, query):
-        result = self.conn.execute(query).fetchall()
-        return result
+        cursor = self.conn.cursor()
+        cursor.execute(query)
+        return cursor
+
+    def execute_request_fetch(self, query):
+        return self.execute_request(query).fetchall()
 
     def get_tags(self):
         query = "EXEC SP_GET_TAGS;"
-        return self.execute_request(query)
+        return self.execute_request_fetch(query)
 
     def insert_tags(self, key, value):
         query = f"EXEC SP_SET_TAG '{key}', '{value}';"
         return self.execute_request(query)
 
-    def insert_pictures(self):
-        pass
+    def insert_pictures(self, name, description, link):
+        query = f"EXEC SP_SET_TAG '{name}', '{description}', '{link}';"
+        return self.execute_request(query)

@@ -9,7 +9,7 @@ app = Flask(__name__)
 app.config['SECRET_KEY'] = 'ErnR468dnezfheI3FUbeehui3'
 Bootstrap(app)
 
-
+az = azure_config.AzureServices()
 @app.route('/', methods=['GET'])
 def home():
 
