@@ -36,18 +36,17 @@ def description_insert_image(picture):
         description_text = description_text + caption.text
 
     print("description : ", description_text, end="\n")
+
     # Call function to insert in BDD
     sql_picture = az.insert_pictures(name, description_text, url)
-    print(sql_picture[0])
-    # for tag in description_image.tags:
-    #     print(tag, end="\n")
+    sql_picture_id = sql_picture[0][0]
 
-    #    az.insert_tags(tag, tag, sql_picture.id)
-    # print("ok")
+    for tag in description_image.tags:
+        az.insert_tags(tag, tag, sql_picture_id)
 
 
-description_insert_image(pictures[8])
+#description_insert_image(pictures[8])
 
-# for i in pictures:
-#    description_insert_image(i)
-#    time.sleep(5)
+for i in pictures:
+    description_insert_image(i)
+    time.sleep(5)

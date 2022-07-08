@@ -26,10 +26,39 @@ class SQLService:
     def execute_request(self, query):
         cursor = self.conn.cursor()
         cursor.execute(query)
+        self.conn.commit()
+        return cursor
+
+    def execute_request_without_commit(self, query):
+        cursor = self.conn.cursor()
+        cursor.execute(query)
         return cursor
 
     def execute_request_fetch(self, query):
-        return self.execute_request(query).fetchall()
+        cursor = self.execute_request_without_commit(query)
+        val = cursor.fetchall()
+        cursor.close()
+        return val
+
+    def execute_exec_request(self, query, params):
+        cursor = self.conn.cursor()
+        cursor.execute(query, params)
+        self.conn.commit()
+        return cursor
+
+    def execute_exec_request_without_commit(self, query, params):
+        cursor = self.conn.cursor()
+        cursor.execute(query, params)
+        return cursor
+
+    def execute_exec_request_fetch(self, query, params):
+        cursor = self.execute_exec_request(query, params)
+        cursor2 = self.execute_exec_request_without_commit(query, params)
+        val = cursor2.fetchall()
+        cursor.close()
+        cursor2.close()
+        print(f"val : {val}")
+        return val
 
     def get_tags(self):
         query = "EXEC SP_GET_TAGS;"
@@ -40,9 +69,11 @@ class SQLService:
         return self.execute_request_fetch(query)
 
     def insert_tags(self, key, value, id):
-        query = f"EXEC SP_SET_TAG '{key}', '{value}', {id};"
-        return self.execute_request_fetch(query)
+        query = f"EXEC SP_SET_TAG ?, ?, ?;"
+        params = (key, value, id)
+        return self.execute_exec_request(query, params)
 
     def insert_pictures(self, name, description, link):
-        query = f"EXEC SP_SET_PICTURE '{name}', '{description}', '{link}';"
-        return self.execute_request(query).fetchall()
+        query = f"Exec SP_SET_PICTURE ?, ?, ?;"
+        params = (name, description, link)
+        return self.execute_exec_request_fetch(query, params)
