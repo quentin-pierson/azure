@@ -50,6 +50,7 @@ def upload_done():
             name = request.form['imageName']
             description = request.form['imageDescription']
             print(url)
+            # az.insert_pictures(name, description, url)
     return render_template('/uploaded.html', url=url, name=name, description=description)
 
 

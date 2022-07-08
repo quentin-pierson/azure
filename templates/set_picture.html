@@ -1,10 +1,34 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
+{% extends 'bootstrap/base.html' %}
+{% import "bootstrap/wtf.html" as wtf %}
+
+{% block styles %}
+{{ super() }}
+<!--	<style>-->
+<!--		body { background: #FCDDBC; }-->
+<!--	</style>-->
+{% endblock %}
+
+
+{% block title %}
+Picture
+{% endblock %}
+
+
+{% block content %}
+
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+      <a class="navbar-brand" href="#">Navbar</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup"
+              aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+        <div class="navbar-nav">
+          <a class="nav-item nav-link" href="/upload">Upload</a>
+          <a class="nav-item nav-link" href="/">Tags</a>
+        </div>
+      </div>
+    </nav>
 
     <div class="container">
         <p>{{ tags }}</p>
@@ -14,5 +38,4 @@
          src="{{ img }}">
     </div>
 
-</body>
-</html>
+{% endblock %}
