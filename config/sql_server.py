@@ -64,16 +64,26 @@ class SQLService:
         query = "EXEC SP_GET_TAGS;"
         return self.execute_request_fetch(query)
 
-    def get_picture(self, tags):
+    def get_picture(self):
         query = "EXEC SP_GET_PICTURES;"
         return self.execute_request_fetch(query)
 
     def insert_tags(self, key, value, id):
-        query = f"EXEC SP_SET_TAG ?, ?, ?;"
+        query = "EXEC SP_SET_TAG ?, ?, ?;"
         params = (key, value, id)
         return self.execute_exec_request(query, params)
 
     def insert_pictures(self, name, description, link):
-        query = f"Exec SP_SET_PICTURE ?, ?, ?;"
+        query = "Exec SP_SET_PICTURE ?, ?, ?;"
         params = (name, description, link)
         return self.execute_exec_request_fetch(query, params)
+
+    def get_picture_by_tag(self, tag):
+        query = "EXEC SP_GET_PICTURES_BY_TAG ?;"
+        params = (tag)
+        return self.execute_exec_request_without_commit(query, params).fetchall()
+
+    def get_picture_by_id(self, id):
+        query = "EXEC SP_GET_PICTURES_BY_ID ?;"
+        params = (id)
+        return self.execute_exec_request_without_commit(query, params).fetchone()

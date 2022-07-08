@@ -45,8 +45,6 @@ def description_insert_image(picture):
         az.insert_tags(tag, tag, sql_picture_id)
 
 
-#description_insert_image(pictures[8])
-
-for i in pictures:
-    description_insert_image(i)
-    time.sleep(5)
+#for i in pictures:
+#    description_insert_image(i)
+#    time.sleep(5)

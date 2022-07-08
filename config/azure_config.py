@@ -39,3 +39,14 @@ class AzureServices:
 
     def get_all_pictures(self):
         return self.adl_service.get_all_pictures()
+
+    def find_picture(self, tags):
+        def most_frequent(List):
+            return max(set(List), key=List.count)
+        result = []
+        for tag in tags:
+            val = self.sql_service.get_picture_by_tag(tag)
+            for t in val:
+                result.append(t[0])
+
+        return self.sql_service.get_picture_by_id(most_frequent(result))[3]
