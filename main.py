@@ -19,20 +19,8 @@ def home():
 
 @app.route('/set_picture', methods=['POST'])
 def set_picture():
-    #form = Research(request.form)
-    #form.tags.data = az.get_tags()
-    #img = az.get_picture(form.tags.data)
-    #if form.validate_on_submit():
-    f = request.form
-    # 'form': ImmutableMultiDict([('tags', 'watch'), ('tags', 'person'), ('tags', 'man'), ('submit', 'Submit')])
-    tags = []
-    for key in f:
-        if "tags" in key:
-            tags.append(key["tags"])
-        pass
-    return str(tags)
+    tags = request.form.getlist('tags')
     img = az.find_picture(tags)
-    #img = "https://www.wapiti-magazine.com/wp-content/uploads/sites/26/2018/12/loutre-de-mer.jpg"
     return render_template('/set_picture.html', img=img, tags=tags)
 
 

@@ -3,7 +3,7 @@ from wtforms import SelectMultipleField, RadioField, TextAreaField, StringField,
 from flask_wtf import FlaskForm
 
 class Research(FlaskForm):
-    tags = SelectMultipleField("Choose a tags", validate_choice=False)
+    tags = SelectMultipleField("Choose a tags")
     # type = RadioField('type', choices=["Logo", "Humain", "Produit"])
     # description = TextAreaField('description', [validators.optional(), validators.length(max=200)])
     # target = RadioField('target', choices=["Traiteur", "Fast Food", "Finger Food", "Brasserie"])

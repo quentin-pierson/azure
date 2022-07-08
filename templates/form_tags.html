@@ -37,9 +37,9 @@ Find your best image
 
         <form class="form" action="{{url_for('set_picture')}}" method="post">
             <div class="form-group">
-                <select name="tags" class="form-control" id="exampleFormControlSelect1" multiple>
+                <select name="tags" class="form-control" id="tags" multiple>
                     {% for key, val in form.tags.data %}
-                        <option value="{{ key }}">{{ val }}</option>
+                        <option value="{{ val }}">{{ val }}</option>
                     {% endfor %}
                 </select>
             </div>
