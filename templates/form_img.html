@@ -3,9 +3,9 @@
 
 {% block styles %}
 {{ super() }}
-	<style>
-		body { background: #FCDDBC; }
-	</style>
+<!--	<style>-->
+<!--		body { background: #FCDDBC; }-->
+<!--	</style>-->
 {% endblock %}
 
 {% block title %}
@@ -28,8 +28,20 @@ Select an image
 </nav>
 
 <div class="container">
-	<form method="POST" action="" enctype="multipart/form-data">
-		<p><input type="file" name="file"></p>
+	<form method="POST" action="/upload_done" enctype="multipart/form-data">
+        <div class="form-group">
+            <label for="inputName">Name this image</label>
+            <input type="text" class="form-control" id="inputName" placeholder="Enter name" name="imageName">
+        </div>
+        <div class="form-group">
+            <label for="inputDescription">Give a description to this image</label>
+            <input type="text" class="form-control" id="inputDescription" placeholder="Enter description" name="imageDescription">
+        </div>
+        <div class="form-group">
+            <label for="inputUrl">Paste image url</label>
+            <input type="url" class="form-control" id="inputUrl" placeholder="Enter url" name="imageUrl">
+            <small id="imgUrl" class="form-text text-muted">Url must be for a png or jpg</small>
+        </div>
       	<div class="form-group">
 			{{ form.submit(class="btn btn-primary") }}
 		</div>

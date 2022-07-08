@@ -19,24 +19,38 @@ def home():
 
 @app.route('/set_picture', methods=['POST'])
 def set_picture():
-    form = Research(request.form)
-    # img = az.get_picture(form.tags.data)
-    img = "https://www.wapiti-magazine.com/wp-content/uploads/sites/26/2018/12/loutre-de-mer.jpg"
-    return render_template('/form_tags.html', img=img, form=form)
-
-@app.route('/picture', methods=['POST'])
-def picture():
-    if request.method == 'POST':
-        request.g
-
+    #form = Research(request.form)
+    #form.tags.data = az.get_tags()
+    #img = az.get_picture(form.tags.data)
+    #if form.validate_on_submit():
+    f = request.form
+    # 'form': ImmutableMultiDict([('tags', 'watch'), ('tags', 'person'), ('tags', 'man'), ('submit', 'Submit')])
+    tags = []
+    for key in f:
+        if "tags" in key:
+            tags.append(key["tags"])
         pass
-    pass
+    return str(tags)
+    img = az.find_picture(tags)
+    #img = "https://www.wapiti-magazine.com/wp-content/uploads/sites/26/2018/12/loutre-de-mer.jpg"
+    return render_template('/set_picture.html', img=img, tags=tags)
 
 
 @app.route('/upload', methods=['GET', 'POST'])
 def upload():
     form = Upload(request.form)
     return render_template('/form_img.html', form=form)
+
+
+@app.route('/upload_done', methods=['GET', 'POST'])
+def upload_done():
+    if request.method == 'POST':
+        if request.form:
+            url = request.form['imageUrl']
+            name = request.form['imageName']
+            description = request.form['imageDescription']
+            print(url)
+    return render_template('/uploaded.html', url=url, name=name, description=description)
 
 
 if __name__ == '__main__':
