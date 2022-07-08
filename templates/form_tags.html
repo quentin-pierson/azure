@@ -41,12 +41,12 @@ Find your best image
     <div class="col-md-10 col-lg-8 mx-lg-auto mx-md-auto">
         <p class="lead">This is the index page for proposing images from tags selection, press control for multiple choice</p>
 
-        <form class="form">
+        <form class="form" action="{{url_for('set_picture')}}" method="post">
             <div class="form-group">
                 <select name="tags" class="form-control" id="exampleFormControlSelect1" multiple>
-                {% for key, val in form.tags.data %}
-                    <option value="{{ key }}">{{ val }}</option>
-                {% endfor %}
+                    {% for key, val in form.tags.data %}
+                        <option value="{{ key }}">{{ val }}</option>
+                    {% endfor %}
                 </select>
             </div>
             <div class="form-check">
