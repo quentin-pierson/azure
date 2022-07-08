@@ -1,2 +1,5 @@
 config/__pycache__/
 /projetazureenv
+.idea/azure.iml
+.idea/misc.xml
+__pycache__/
